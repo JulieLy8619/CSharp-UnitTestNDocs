@@ -11,23 +11,36 @@ namespace lab2_unittesting
             bool running = true;
             do
             {
-                MenuSelection(balance);
+                MenuSelection();
             } while (running); //I am ok with that I don't reset to false at any point becasuse exit will exit the program
             Console.ReadLine(); //so it doesn't auto exit
         }
-
-        //public static double ReturnsBalance(double balance)
-        //{
-        //    Console.WriteLine($"Your balance is {balance}");
-        //return balance;
-        //}
 
         private static void ViewBalance(double balance)
         {
             Console.WriteLine($"Your balance is {balance}");
         }
 
-        public static void MenuSelection(double balance)
+        public static double Deposit(double balance)
+        {
+            Console.WriteLine("How much are you depositing");
+            string userAmt = Console.ReadLine();
+            double depositAmt = Convert.ToDouble(userAmt);
+            balance = balance + depositAmt;
+            return balance;
+        }
+
+        public static double Withdrawl(double balance)
+        {
+            Console.WriteLine("How much are you withdrawing?");
+            string userAmt = Console.ReadLine();
+            double withdrawlAmt = Convert.ToDouble(userAmt);
+            balance = balance - withdrawlAmt;
+            return balance;
+        }
+
+
+        public static void MenuSelection()
         {
             Console.WriteLine("Make a selection");
             Console.WriteLine("1: Check your Balance");
@@ -38,22 +51,18 @@ namespace lab2_unittesting
             int userChoiceInt = Convert.ToInt32(userChoice);
             switch (userChoiceInt)
             {
-                case 1:
-                    //Console.WriteLine("in switch 1");
-                    //call balance function
+                case 1: //balance
                     ViewBalance(balance);
                     break;
-                case 2:
-                    Console.WriteLine("in switch 2");
-                    //call deposit function
+                case 2: // deposit
+                    balance = Deposit(balance);
+                    ViewBalance(balance);
                     break;
-                case 3:
-                    Console.WriteLine("in switch 3");
-                    //call withdrawl function
+                case 3: // withdrawal
+                    balance = Withdrawl(balance);
+                    ViewBalance(balance);
                     break;
-                default:
-                    //Console.WriteLine("in switch 4");
-                    Console.ReadLine();
+                default: // exit
                     Environment.Exit(0);
                     break;
             }
