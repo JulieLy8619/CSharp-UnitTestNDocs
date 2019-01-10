@@ -35,7 +35,12 @@ namespace lab2_unittesting
             Console.WriteLine("How much are you withdrawing?");
             string userAmt = Console.ReadLine();
             double withdrawlAmt = Convert.ToDouble(userAmt);
-            balance = balance - withdrawlAmt;
+            if(withdrawlAmt > balance)
+            {
+                Console.WriteLine("You don't have enough funds, exited transaction without changes");
+            }
+            else
+                balance = balance - withdrawlAmt;
             return balance;
         }
 
@@ -47,24 +52,53 @@ namespace lab2_unittesting
             Console.WriteLine("2: Make a Deposit");
             Console.WriteLine("3: Make a Withdrawl");
             Console.WriteLine("4: Exit");
-            string userChoice = Console.ReadLine();
-            int userChoiceInt = Convert.ToInt32(userChoice);
-            switch (userChoiceInt)
+            try
             {
-                case 1: //balance
-                    ViewBalance(balance);
-                    break;
-                case 2: // deposit
-                    balance = Deposit(balance);
-                    ViewBalance(balance);
-                    break;
-                case 3: // withdrawal
-                    balance = Withdrawl(balance);
-                    ViewBalance(balance);
-                    break;
-                default: // exit
-                    Environment.Exit(0);
-                    break;
+                string userChoice = Console.ReadLine();
+                int userChoiceInt = Convert.ToInt32(userChoice);
+                if (userChoiceInt > 4)
+                {
+                    Console.WriteLine("That isn't an option");
+                    MenuSelection();
+                }
+                else if (userChoiceInt < 0)
+                {
+                    Console.WriteLine("That isn't an option");
+                    MenuSelection();
+                }
+                else
+                {
+                    switch (userChoiceInt)
+                    {
+                        case 1: //balance
+                            ViewBalance(balance);
+                            break;
+                        case 2: // deposit
+                            balance = Deposit(balance);
+                            ViewBalance(balance);
+                            break;
+                        case 3: // withdrawal
+                            balance = Withdrawl(balance);
+                            ViewBalance(balance);
+                            break;
+                        default: // exit
+                            Environment.Exit(0);
+                            break;
+                    }
+                }
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("There was an error reading your input, please try again.");
+                MenuSelection();
+            }
+            catch (Exception) //general
+            {
+                Console.WriteLine("Something went wrong");
+            }
+            finally
+            {
+
             }
         }
 
