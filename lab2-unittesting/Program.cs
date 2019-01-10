@@ -26,7 +26,15 @@ namespace lab2_unittesting
             Console.WriteLine("How much are you depositing");
             string userAmt = Console.ReadLine();
             double depositAmt = Convert.ToDouble(userAmt);
-            balance = balance + depositAmt;
+            if (depositAmt < 0)
+            {
+                Console.WriteLine("You cannot deposit a negative amount! Exited transaction without changes");
+                MenuSelection();
+            }
+            else
+            {
+                balance = balance + depositAmt;
+            }
             return balance;
         }
 
@@ -38,6 +46,12 @@ namespace lab2_unittesting
             if(withdrawlAmt > balance)
             {
                 Console.WriteLine("You don't have enough funds, exited transaction without changes");
+                MenuSelection();
+            }
+            else if (withdrawlAmt < 0)
+            {
+                Console.WriteLine("You cannot make a negative withdrawal, exited transaction without changes");
+                MenuSelection();
             }
             else
                 balance = balance - withdrawlAmt;
@@ -66,6 +80,10 @@ namespace lab2_unittesting
                     Console.WriteLine("That isn't an option");
                     MenuSelection();
                 }
+                else if (userChoiceInt == null)
+                {
+                    throw new ArgumentNullException();
+                }
                 else
                 {
                     switch (userChoiceInt)
@@ -87,6 +105,11 @@ namespace lab2_unittesting
                     }
                 }
             }
+            catch (ArgumentNullException)
+            {
+                Console.WriteLine("You didn't make an entry. Try again.");
+                MenuSelection();
+            }
             catch (FormatException)
             {
                 Console.WriteLine("There was an error reading your input, please try again.");
@@ -98,7 +121,7 @@ namespace lab2_unittesting
             }
             finally
             {
-
+                Console.WriteLine("Thank you for Banking with the Unicorns");
             }
         }
 
