@@ -17,7 +17,12 @@ Say the user would like to view their balance they would enter 1, 2 for deposit,
 A user may go through this menu as many times until they choose to exit.
 No additional information for program use at this time.
 <!--Insert image here of screenshots of it working-->
+![SmoothSailing](../../images/smoothsailing.JPG)
 
+
+
+For grading, the tests had worked before I changed up the code for user input, etc
+![test](../../images/testsWork.JPG)
 
 
 
