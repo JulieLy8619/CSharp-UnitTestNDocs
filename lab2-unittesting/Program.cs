@@ -8,6 +8,8 @@ namespace lab2_unittesting
         static void Main(string[] args)
         {
             //this is where the switch will go
+            DisplayMenu(balance);
+
             ReturnsBalance(balance);
         }
 
@@ -15,6 +17,27 @@ namespace lab2_unittesting
         {
         return balance;
         }
+
+        public static void DisplayMenu(double balance)
+        {
+            switch (balance)
+            {
+                case 1:
+                    Console.WriteLine("Check your Balance");
+                    break;
+                case 2:
+                    Console.WriteLine("Make a Deposit");
+                    break;
+                case 3:
+                    Console.WriteLine("Make a Withdrawl");
+                    break;
+                default:
+                    Console.WriteLine("Exit");
+                    Environment.Exit(0);
+                    break;
+            }
+        }
+
 
     }
 }
