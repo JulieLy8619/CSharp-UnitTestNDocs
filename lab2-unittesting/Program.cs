@@ -16,10 +16,15 @@ namespace lab2_unittesting
             Console.ReadLine(); //so it doesn't auto exit
         }
 
-        public static double ReturnsBalance(double balance)
+        //public static double ReturnsBalance(double balance)
+        //{
+        //    Console.WriteLine($"Your balance is {balance}");
+        //return balance;
+        //}
+
+        private static void ViewBalance(double balance)
         {
             Console.WriteLine($"Your balance is {balance}");
-        return balance;
         }
 
         public static void MenuSelection(double balance)
@@ -34,8 +39,9 @@ namespace lab2_unittesting
             switch (userChoiceInt)
             {
                 case 1:
-                    Console.WriteLine("in switch 1");
+                    //Console.WriteLine("in switch 1");
                     //call balance function
+                    ViewBalance(balance);
                     break;
                 case 2:
                     Console.WriteLine("in switch 2");
